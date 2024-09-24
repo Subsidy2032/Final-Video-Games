@@ -2,34 +2,38 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5f;
+    public float speed = 5f;
+    public float controlFactor = 0.5f;
 
     private Rigidbody2D rb;
-    private Vector2 movementDirection;
-    private bool isColliding = false;
-    private Collision2D collision;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        movementDirection = Random.insideUnitCircle.normalized;
-        rb.velocity = movementDirection * moveSpeed;
+        rb.velocity = Random.insideUnitCircle * speed;
     }
 
-    private void FixedUpdate()
+    void Update()
     {
-        if (isColliding)
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        Vector2 controlVector = new Vector2(horizontalInput, verticalInput).normalized * controlFactor;
+
+        rb.velocity += controlVector * speed * Time.deltaTime;
+
+        rb.velocity = Vector2.ClampMagnitude(rb.velocity, speed);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag(ObjectTagsEnum.LeftWall.ToString()) ||
+            collision.gameObject.CompareTag(ObjectTagsEnum.RightWall.ToString()) ||
+            collision.gameObject.CompareTag(ObjectTagsEnum.Ground.ToString()) ||
+            collision.gameObject.CompareTag(ObjectTagsEnum.Ceiling.ToString()))
         {
-            movementDirection = Vector2.Reflect(movementDirection, collision.contacts[0].normal);
-            rb.velocity = movementDirection * moveSpeed;
-            collision = null;
-            isColliding = false;
+            Vector2 reflectDirection = Vector2.Reflect(rb.velocity, collision.contacts[0].normal);
+            rb.velocity = reflectDirection.normalized * speed;
         }
-    }
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        isColliding = true;
-        this.collision = collision;
     }
 }

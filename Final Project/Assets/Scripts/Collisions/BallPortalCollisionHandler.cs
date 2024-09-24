@@ -10,7 +10,7 @@ public class BallPortalCollisionHandler : MonoBehaviour
         ballHoleCollisionChannel = beacon.ballHoleCollisionChannel;
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerExit2D(Collider2D collision)
     {
         Collider2D thisCollider = GetComponent<Collider2D>();
 
@@ -19,7 +19,7 @@ public class BallPortalCollisionHandler : MonoBehaviour
             if (collision.CompareTag("Ball") && collision.isTrigger)
             {
                 Debug.Log("Collition Detected");
-                ballHoleCollisionChannel.InvokeCollisionDetected(collision.gameObject);
+                ballHoleCollisionChannel.InvokeCollisionDetected(collision.gameObject, gameObject.tag);
             }
         }
         

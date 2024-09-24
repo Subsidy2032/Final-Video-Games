@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class BallHoleCollisionChannel : ScriptableObject
 {
-    public event Action<GameObject> CollisionDetected;
+    public event Action<GameObject, string> CollisionDetected;
 
-    public void InvokeCollisionDetected(GameObject ball)
+    public void InvokeCollisionDetected(GameObject ball, string tag)
     {
-        CollisionDetected?.Invoke(ball);
+        if (SharedFunctions.GetInstance().IsOutOfBounds(ball, tag))
+            CollisionDetected?.Invoke(ball, tag);
     }
 }

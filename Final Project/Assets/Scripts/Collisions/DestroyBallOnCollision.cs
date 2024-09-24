@@ -14,7 +14,7 @@ public class DestroyBallOnCollision : MonoBehaviour
         ballHoleCollisionChannel.CollisionDetected += DestroyBall;
     }
 
-    void DestroyBall(GameObject ball)
+    void DestroyBall(GameObject ball, string tag)
     {
         Destroy(ball);
     }

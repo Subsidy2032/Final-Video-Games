@@ -16,7 +16,7 @@ public class UpdateScore : MonoBehaviour
         ballHoleCollisionChannel.CollisionDetected += AddToScore;
     }
 
-    void AddToScore(GameObject ball)
+    void AddToScore(GameObject ball, string tag)
     {
         BallScript ballScript = ball.GetComponent<BallScript>();
         SO_Ball sO_Ball = ballScript.sO_Ball;

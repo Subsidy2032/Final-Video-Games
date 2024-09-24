@@ -32,11 +32,15 @@ public class PortalSpawner : MonoBehaviour
 
     private void SpawnHole()
     {
-        GameObject[] blocks = GameObject.FindGameObjectsWithTag(ObjectTag.Block.ToString());
-        GameObject[] grounds = GameObject.FindGameObjectsWithTag(ObjectTag.Ground.ToString());
+        GameObject[] rightWalls = GameObject.FindGameObjectsWithTag(ObjectTagsEnum.RightWall.ToString());
+        GameObject[] leftWalls = GameObject.FindGameObjectsWithTag(ObjectTagsEnum.LeftWall.ToString());
+        GameObject[] cielings = GameObject.FindGameObjectsWithTag(ObjectTagsEnum.Ceiling.ToString());
+        GameObject[] grounds = GameObject.FindGameObjectsWithTag(ObjectTagsEnum.Ground.ToString());
 
         List<GameObject> wallAndGroundObjects = new List<GameObject>();
-        wallAndGroundObjects.AddRange(blocks);
+        wallAndGroundObjects.AddRange(rightWalls);
+        wallAndGroundObjects.AddRange(leftWalls);
+        wallAndGroundObjects.AddRange(cielings);
         wallAndGroundObjects.AddRange(grounds);
         GameObject[] allBlocks = wallAndGroundObjects.ToArray();
 
@@ -81,11 +85,5 @@ public class PortalSpawner : MonoBehaviour
         {
             portalSprite.color = Color.white;
         }
-    }
-
-    public enum ObjectTag
-    {
-        Block,
-        Ground
     }
 }

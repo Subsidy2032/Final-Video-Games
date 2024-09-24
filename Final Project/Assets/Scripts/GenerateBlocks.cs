@@ -40,8 +40,23 @@ public class GenerateBlocks : MonoBehaviour
             GameObject wallSegment = Instantiate(blockSegmentPrefab, segmentPosition, Quaternion.identity);
             wallSegment.transform.localScale = isHorizontal ? new Vector2(segmentLength, thickness) : new Vector2(thickness, segmentLength);
 
-            if (isHorizontal && position.y < 0)
-                wallSegment.tag = "Ground";
+            if (isHorizontal)
+            {
+                if (position.y < 0)
+                    wallSegment.tag = ObjectTagsEnum.Ground.ToString();
+
+                else
+                    wallSegment.tag = ObjectTagsEnum.Ceiling.ToString();
+            }
+                
+            else
+            {
+                if (position.x < 0)
+                    wallSegment.tag = ObjectTagsEnum.LeftWall.ToString();
+
+                else
+                    wallSegment.tag = ObjectTagsEnum.RightWall.ToString();
+            }
         }
     }
 }
