@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff55cb76681d0c459ad1b2b202306bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 10
   controlFactor: 0.5
 --- !u!58 &-104805244163187675
 CircleCollider2D:
@@ -187,7 +187,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 4375438672118756535}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 1d955b2d08c2e279e8b54dc8fb904293, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

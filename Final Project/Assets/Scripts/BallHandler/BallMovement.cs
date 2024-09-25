@@ -9,31 +9,34 @@ public class BallMovement : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        rb.velocity = Random.insideUnitCircle * speed;
-    }
-
-    void Update()
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        Vector2 controlVector = new Vector2(horizontalInput, verticalInput).normalized * controlFactor;
-
-        rb.velocity += controlVector * speed * Time.deltaTime;
-
-        rb.velocity = Vector2.ClampMagnitude(rb.velocity, speed);
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        // Apply a random force to the ball in a random direction
+        Vector2 randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+        float forceMagnitude = Random.Range(5f, 10f); // Adjust these values for desired speed
+        rb.AddForce(randomDirection * forceMagnitude, ForceMode2D.Impulse);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(ObjectTagsEnum.LeftWall.ToString()) ||
-            collision.gameObject.CompareTag(ObjectTagsEnum.RightWall.ToString()) ||
-            collision.gameObject.CompareTag(ObjectTagsEnum.Ground.ToString()) ||
-            collision.gameObject.CompareTag(ObjectTagsEnum.Ceiling.ToString()))
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        Vector2 newVelocity = Vector2.Reflect(rb.velocity, collision.contacts[0].normal);
+
+        // Add a small random perturbation to the velocity
+        float randomOffset = Random.Range(-0.1f, 0.1f);
+        newVelocity.x += randomOffset;
+        newVelocity.y += randomOffset;
+
+        rb.velocity = newVelocity.normalized * rb.velocity.magnitude; // Maintain original speed
+    }
+
+    void FixedUpdate()
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (Mathf.Abs(rb.velocity.x) < 0.1f || Mathf.Abs(rb.velocity.y) < 0.1f)
         {
-            Vector2 reflectDirection = Vector2.Reflect(rb.velocity, collision.contacts[0].normal);
-            rb.velocity = reflectDirection.normalized * speed;
+            // If the velocity is too uniform, introduce a slight nudge
+            Vector2 nudge = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+            rb.velocity += nudge;
         }
     }
 }
