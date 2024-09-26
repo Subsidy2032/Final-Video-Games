@@ -3,6 +3,8 @@ public enum ObjectTagsEnum
     RightWall,
     LeftWall,
     Ceiling,
-    Ground
+    Ground,
+    Player,
+    Ball
 }
 

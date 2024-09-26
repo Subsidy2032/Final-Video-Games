@@ -18,7 +18,6 @@ public class BallPortalCollisionHandler : MonoBehaviour
         {
             if (collision.CompareTag("Ball") && collision.isTrigger)
             {
-                Debug.Log("Collition Detected");
                 ballHoleCollisionChannel.InvokeCollisionDetected(collision.gameObject, gameObject.tag);
             }
         }

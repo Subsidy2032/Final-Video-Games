@@ -34,13 +34,13 @@ public class PortalSpawner : MonoBehaviour
     {
         GameObject[] rightWalls = GameObject.FindGameObjectsWithTag(ObjectTagsEnum.RightWall.ToString());
         GameObject[] leftWalls = GameObject.FindGameObjectsWithTag(ObjectTagsEnum.LeftWall.ToString());
-        GameObject[] cielings = GameObject.FindGameObjectsWithTag(ObjectTagsEnum.Ceiling.ToString());
+        GameObject[] ceiling = GameObject.FindGameObjectsWithTag(ObjectTagsEnum.Ceiling.ToString());
         GameObject[] grounds = GameObject.FindGameObjectsWithTag(ObjectTagsEnum.Ground.ToString());
 
         List<GameObject> wallAndGroundObjects = new List<GameObject>();
         wallAndGroundObjects.AddRange(rightWalls);
         wallAndGroundObjects.AddRange(leftWalls);
-        wallAndGroundObjects.AddRange(cielings);
+        wallAndGroundObjects.AddRange(ceiling);
         wallAndGroundObjects.AddRange(grounds);
         GameObject[] allBlocks = wallAndGroundObjects.ToArray();
 
