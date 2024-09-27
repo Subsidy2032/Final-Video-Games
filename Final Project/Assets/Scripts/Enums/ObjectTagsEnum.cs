@@ -5,6 +5,7 @@ public enum ObjectTagsEnum
     Ceiling,
     Ground,
     Player,
-    Ball
+    Ball,
+    Booster
 }
 

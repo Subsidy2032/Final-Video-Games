@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class BoosterCollectHandling : MonoBehaviour
 {
-    PlayerBoosterCollectChannel playerBoosterCollectChannel;
-
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Beacon beacon = Beacon.GetInstance();
-        playerBoosterCollectChannel = beacon.playerBoosterCollectChannel;
-        playerBoosterCollectChannel.CollisionDetected += improveJump;
-    }
-
-    void improveJump(GameObject player)
-    {
-        player.GetComponent<PlayerMovement>().jumpAmount = 10;
+        if (collision.CompareTag(ObjectTagsEnum.Booster.ToString()))
+        {
+            this.GetComponent<PlayerMovement>().jumpAmount = 10;
+            Destroy(collision.gameObject);
+        }
     }
 }
