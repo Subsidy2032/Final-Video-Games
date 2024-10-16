@@ -16,11 +16,22 @@ public class UpdateScore : MonoBehaviour
         ballHoleCollisionChannel.CollisionDetected += AddToScore;
     }
 
-    void AddToScore(GameObject ball, string tag)
+    void AddToScore(GameObject ball, string tag, string color)
     {
         BallScript ballScript = ball.GetComponent<BallScript>();
         SO_Ball sO_Ball = ballScript.sO_Ball;
-        score += sO_Ball.score;
+
+        // Removing points if it's a red hole
+        if (color == "green" ) 
+        {
+            score += sO_Ball.addPoints;
+        }
+
+        if (color == "red")
+        {
+            score += sO_Ball.removePoints;
+        }
+
         scoreText.text = "Your Score: " + score;
     }
 }

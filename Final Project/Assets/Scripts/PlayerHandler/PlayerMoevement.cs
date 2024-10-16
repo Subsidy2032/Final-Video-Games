@@ -7,7 +7,8 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField] float speed = 10f;
     [SerializeField] public float jumpAmount = 10f;
-    private bool isGrounded;
+
+    private bool isGrounded = true;  // Starts as true to allow initial jump
     private Vector2 direction;
 
     void Start()
@@ -21,28 +22,34 @@ public class PlayerMovement : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         direction = new Vector2(horizontalInput, 0);
+
+        // Allow jump when space is pressed and player is grounded
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            Jump();
+        }
     }
 
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(direction.x * speed, rb.velocity.y);
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-            Jump();
     }
 
     void Jump()
     {
         rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
+        isGrounded = false;  // Once the player jumps, they're no longer grounded
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(ObjectTagsEnum.Ground.ToString()))
+        // When colliding with any surface, set isGrounded to true
+        if (collision.contacts[0].normal.y > 0.5f)  // Checks if the collision is from below
         {
             isGrounded = true;
         }
 
+        // Handle ball collision to trigger jump
         if (collision.gameObject.CompareTag(ObjectTagsEnum.Ball.ToString()))
         {
             Jump();
@@ -51,7 +58,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(ObjectTagsEnum.Ground.ToString()))
+        // Check if there are any contacts before accessing them
+        if (collision.contactCount > 0 && collision.contacts[0].normal.y > 0.5f)
         {
             isGrounded = false;
         }

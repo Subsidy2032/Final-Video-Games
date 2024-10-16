@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class BallHoleCollisionChannel : ScriptableObject
 {
-    public event Action<GameObject, string> CollisionDetected;
+    // Added another string to the event for the color
+    public event Action<GameObject, string, string> CollisionDetected;
 
-    public void InvokeCollisionDetected(GameObject ball, string tag)
+    public void InvokeCollisionDetected(GameObject ball, string tag, string color)
     {
         if (IsOutOfBounds(ball, tag))
-            CollisionDetected?.Invoke(ball, tag);
+            CollisionDetected?.Invoke(ball, tag, color);
     }
 
     public bool IsOutOfBounds(GameObject ball, string tag)
