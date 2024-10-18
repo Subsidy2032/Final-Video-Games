@@ -5,6 +5,12 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] float runningTime;
     [SerializeField] TextMeshProUGUI timeText;
+    TimerChannel timerChannel;
+
+    private void Start()
+    {
+        timerChannel = Beacon.GetInstance().timerChannel;
+    }
 
     void Update()
     {
@@ -17,6 +23,7 @@ public class Timer : MonoBehaviour
         if (runningTime <= 0)
         {
             Time.timeScale = 0f;
+            timerChannel.TimeEnded(runningTime);
         }
     }
 

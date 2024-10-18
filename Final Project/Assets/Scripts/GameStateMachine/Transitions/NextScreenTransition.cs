@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,23 +6,36 @@ using UnityEngine;
 
 public class NextScreenTransition : TransitionBase
 {
-    [SerializeField] float runningTime;
+    bool canTransition = false;
+    TimerChannel timerChannel;
 
-    void Update()
+    private void Start()
     {
-        if (runningTime > 0)
-        {
-            runningTime -= Time.deltaTime;
-        }
-
-        if (runningTime <= 0)
-        {
-            
-        }
+        timerChannel = Beacon.GetInstance().timerChannel;
+        timerChannel.TimeEnd += HandleLevelEnd;
     }
 
-    public void IncTime()
+    private void HandleLevelEnd(float runningTime)
     {
-        runningTime += 5;
+        canTransition = true;
+    }
+
+    public override bool ShouldTransition()
+    {
+        if (canTransition && base.ShouldTransition())
+        {
+            canTransition = false;
+            return true;
+        }
+
+        return false;
+    }
+
+    private void OnDestroy()
+    {
+        if (timerChannel != null)
+        {
+            timerChannel.TimeEnd -= HandleLevelEnd;
+        }
     }
 }

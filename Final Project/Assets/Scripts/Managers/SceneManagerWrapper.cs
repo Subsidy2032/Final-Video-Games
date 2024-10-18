@@ -16,13 +16,6 @@ public class SceneManagerWrapper : MonoBehaviour
         SceneNamesEnum.Level2.ToString(), 
         SceneNamesEnum.Level3.ToString() };
 
-    private Dictionary<string, int> requiredPoints = new Dictionary<string, int>
-    {
-        { SceneNamesEnum.Level1.ToString(), 10 },
-        { SceneNamesEnum.Level2.ToString(), 20 },
-        { SceneNamesEnum.Level3.ToString(), 30 }
-    };
-
     private void Awake()
     {
         if (Instance == null)
@@ -45,6 +38,18 @@ public class SceneManagerWrapper : MonoBehaviour
     {
         currentSceneName = SceneManager.GetActiveScene().name;
         sceneLoadTime = Time.time;
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Time.timeScale = 1;
     }
 
     public void LoadScene(string sceneName)
@@ -55,35 +60,19 @@ public class SceneManagerWrapper : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    public void LoadNextLevel(int playerScore)
+    public void LoadNextLevel()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
         int nextLevel = levelNames.IndexOf(currentSceneName) + 1;
 
-        if (requiredPoints.ContainsKey(currentSceneName))
+        if (nextLevel < levelNames.Count)
         {
-            if (playerScore >= requiredPoints[currentSceneName])
-            {
-                if (nextLevel < levelNames.Count)
-                {
-                    LoadScene(levelNames[nextLevel]);
-                }
-
-                else
-                {
-                    LoadScene(winSceneName);
-                }
-            }
-
-            else
-            {
-                LoadScene(LoseSceneName);
-            }
+            LoadScene(levelNames[nextLevel]);
         }
 
         else
         {
-            Debug.Log("Not currently inside a level");
+            LoadScene(winSceneName);
         }
     }
 

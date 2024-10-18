@@ -8,10 +8,13 @@ public class UpdateScore : MonoBehaviour
 {
     private BallHoleCollisionChannel ballHoleCollisionChannel;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] PlayerScoreChannel playerScoreChannel;
     private int score = 0;
 
     void Start()
     {
+        playerScoreChannel = Beacon.GetInstance().playerScoreChannel;
+
         ballHoleCollisionChannel = Beacon.GetInstance().ballHoleCollisionChannel;
         ballHoleCollisionChannel.CollisionDetected += AddToScore;
     }
@@ -21,7 +24,6 @@ public class UpdateScore : MonoBehaviour
         BallScript ballScript = ball.GetComponent<BallScript>();
         SO_Ball sO_Ball = ballScript.sO_Ball;
 
-        // Removing points if it's a red hole
         if (color == "green" ) 
         {
             score += sO_Ball.addPoints;
@@ -31,6 +33,8 @@ public class UpdateScore : MonoBehaviour
         {
             score += sO_Ball.removePoints;
         }
+
+        playerScoreChannel.ScoreUpdated(score);
 
         scoreText.text = "Your Score: " + score;
     }
