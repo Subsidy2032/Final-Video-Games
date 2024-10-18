@@ -11,21 +11,23 @@ public class Ending : MonoBehaviour
     [SerializeField] Button exitButton;
     [SerializeField] string startGameSceneName = SceneNamesEnum.Level1.ToString();
     [SerializeField] string openingSceneName = SceneNamesEnum.StartScreen.ToString();
+    SceneManagerWrapper sceneManager;
 
     void Start()
     {
         restartButton.onClick.AddListener(() => RestartGame());
         menuButton.onClick.AddListener(() => BackToMenu());
         exitButton.onClick.AddListener(() => Application.Quit());
+        sceneManager = SceneManagerWrapper.GetInstance();
     }
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(startGameSceneName);
+        sceneManager.LoadScene(startGameSceneName);
     }
 
     public void BackToMenu()
     {
-        SceneManager.LoadScene(openingSceneName);
+        sceneManager.LoadScene(openingSceneName);
     }
 }

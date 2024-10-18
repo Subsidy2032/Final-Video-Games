@@ -3,7 +3,7 @@ public enum SceneNamesEnum
     StartScreen,
     Level1,
     Level2,
-    level3,
+    Level3,
     LoseScreen,
     WinScreen
 }

@@ -4,6 +4,7 @@ public class Beacon : MonoBehaviour
 {
     private static Beacon instance;
     [SerializeField] public BallHoleCollisionChannel ballHoleCollisionChannel;
+    [SerializeField] public GameStateChannel gameStateChannel;
 
     void Awake()
     {
