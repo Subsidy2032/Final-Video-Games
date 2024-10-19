@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NextScreenTransition : TransitionBase
 {
@@ -13,6 +14,12 @@ public class NextScreenTransition : TransitionBase
     {
         timerChannel = Beacon.GetInstance().timerChannel;
         timerChannel.TimeEnd += HandleLevelEnd;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        canTransition = false;
     }
 
     private void HandleLevelEnd(float runningTime)

@@ -6,15 +6,14 @@ using UnityEngine.SceneManagement;
 public class NextScreen : MonoBehaviour
 {
     GameStateChannel gameStateChannel;
-    [SerializeField] string LevelFinishedState = "LevelFinished";
     [SerializeField] PlayerScoreChannel playerScoreChannel;
     [SerializeField] GameObject winPanel;
 
     [SerializeField] Dictionary<string, int> requiredPoints = new Dictionary<string, int>
     {
-        { SceneNamesEnum.Level1.ToString(), 3 },
-        { SceneNamesEnum.Level2.ToString(), 3 },
-        { SceneNamesEnum.Level3.ToString(), 3 }
+        { SceneNamesEnum.Level1.ToString(), 0 },
+        { SceneNamesEnum.Level2.ToString(), 0 },
+        { SceneNamesEnum.Level3.ToString(), 0 }
     };
 
     SceneManagerWrapper sceneManager;
@@ -40,12 +39,20 @@ public class NextScreen : MonoBehaviour
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        if (state.stateSO.name == LevelFinishedState)
+        if (state.stateSO.name == StateNamesEnum.LevelFinished.ToString())
         {
 
             if (playerScore >= requiredPoints[currentSceneName])
             {
-                winPanel.SetActive(true);
+                if (currentSceneName == SceneNamesEnum.Level3.ToString())
+                {
+                    sceneManager.LoadScene(SceneNamesEnum.WinScreen.ToString());
+                }
+
+                else
+                {
+                    winPanel.SetActive(true);
+                }
             }
 
             else

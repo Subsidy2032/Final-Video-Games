@@ -26,12 +26,6 @@ public class Menu : MonoBehaviour
         sceneManager = SceneManagerWrapper.GetInstance();
         gameStateChannel.StateEnter += OnStateEnter;
 
-        returnButton.onClick.AddListener(() =>
-        {
-            menuPanel.SetActive(false);
-            Time.timeScale = 1;
-            isMenuActive = false;
-        });
 
         restartButton.onClick.AddListener(() =>
         {
@@ -75,11 +69,13 @@ public class Menu : MonoBehaviour
             if (isMenuActive)
             {
                 Time.timeScale = 0f;
+                isMenuActive = false;
             }
 
             else
             {
                 Time.timeScale = 1f;
+                isMenuActive = true;
             }
         }
     }
