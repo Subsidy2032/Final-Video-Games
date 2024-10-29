@@ -28,7 +28,6 @@ public class BallMovement : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (Mathf.Abs(rb.velocity.x) < 0.1f || Mathf.Abs(rb.velocity.y) < 0.1f)
         {
-            // If the velocity is too uniform, introduce a slight nudge
             Vector2 nudge = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
             rb.velocity += nudge;
         }
