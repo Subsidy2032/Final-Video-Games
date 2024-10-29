@@ -61,7 +61,7 @@ public class Menu : MonoBehaviour
 
     private void OnStateEnter(GameState state)
     {
-        if (state != null && state.stateSO.canMenu && !(sceneManager.GetElapsedTime() < 0.5))
+        if (state != null && state.stateSO.canMenu && !(sceneManager.GetElapsedTime() < 0.2))
         {
             menuPanel.SetActive(!menuPanel.activeSelf);
             isMenuActive = menuPanel.activeSelf;

@@ -3519,7 +3519,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1605776955}
   m_CullTransparentMesh: 1
---- !u!1001 &1668003300
+--- !u!1001 &1689283334
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -4671,6 +4671,6 @@ SceneRoots:
   - {fileID: 934557562}
   - {fileID: 334016561}
   - {fileID: 786084339}
-  - {fileID: 454126379}
-  - {fileID: 1668003300}
   - {fileID: 525477951}
+  - {fileID: 1689283334}
+  - {fileID: 454126379}
