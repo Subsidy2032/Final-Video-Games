@@ -9,12 +9,9 @@ public class NextScreen : MonoBehaviour
     [SerializeField] PlayerScoreChannel playerScoreChannel;
     [SerializeField] GameObject winPanel;
 
-    [SerializeField] Dictionary<string, int> requiredPoints = new Dictionary<string, int>
-    {
-        { SceneNamesEnum.Level1.ToString(), 0 },
-        { SceneNamesEnum.Level2.ToString(), 0 },
-        { SceneNamesEnum.Level3.ToString(), 0 }
-    };
+    [SerializeField] private LevelRequirementsSO levelRequirements;
+
+    private Dictionary<string, int> requiredPoints;
 
     SceneManagerWrapper sceneManager;
     int playerScore = 0;
@@ -28,6 +25,7 @@ public class NextScreen : MonoBehaviour
 
         playerScoreChannel.ScoreUpdate += UpdateScore;
         sceneManager = SceneManagerWrapper.GetInstance();
+        requiredPoints = levelRequirements.requiredPoints;
     }
 
     void UpdateScore(int score)

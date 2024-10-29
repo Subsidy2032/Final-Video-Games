@@ -1347,6 +1347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerScoreChannel: {fileID: 11400000, guid: 8f9290a2a3abf854380f71b379a96a54, type: 2}
   winPanel: {fileID: 1581235185}
+  levelRequirements: {fileID: 11400000, guid: 9405d4d692a7bf847bac58fb293f77f0, type: 2}
 --- !u!4 &525477951
 Transform:
   m_ObjectHideFlags: 0
