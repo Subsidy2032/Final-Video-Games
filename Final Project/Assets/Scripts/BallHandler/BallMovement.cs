@@ -3,30 +3,24 @@ using UnityEngine;
 public class BallMovement : MonoBehaviour
 {
     public float speed = 5f;
-    public float controlFactor = 0.5f;
-
     private Rigidbody2D rb;
 
     void Start()
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        // Apply a random force to the ball in a random direction
-        Vector2 randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-        float forceMagnitude = Random.Range(5f, 10f); // Adjust these values for desired speed
-        rb.AddForce(randomDirection * forceMagnitude, ForceMode2D.Impulse);
+        rb = GetComponent<Rigidbody2D>();
+        float angle = Random.Range(0f, 360f);
+        Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+        rb.velocity = direction.normalized * speed;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        Vector2 newVelocity = Vector2.Reflect(rb.velocity, collision.contacts[0].normal);
+        Vector2 normal = collision.contacts[0].normal;
+        Vector2 newDirection = Vector2.Reflect(rb.velocity, normal);
+        rb.velocity = newDirection.normalized * speed;
 
-        // Add a small random perturbation to the velocity
-        float randomOffset = Random.Range(-0.1f, 0.1f);
-        newVelocity.x += randomOffset;
-        newVelocity.y += randomOffset;
-
-        rb.velocity = newVelocity.normalized * rb.velocity.magnitude; // Maintain original speed
+        Vector2 separationForce = normal * 0.1f;
+        rb.AddForce(separationForce, ForceMode2D.Impulse);
     }
 
     void FixedUpdate()
@@ -40,3 +34,4 @@ public class BallMovement : MonoBehaviour
         }
     }
 }
+
