@@ -9,12 +9,32 @@ public class NextScreenTransition : TransitionBase
 {
     bool canTransition = false;
     TimerChannel timerChannel;
+    PlayerScoreChannel playerScoreChannel;
+    [SerializeField] private LevelRequirementsSO levelRequirements;
+    private Dictionary<string, int> requiredPoints;
 
     private void Start()
     {
-        timerChannel = Beacon.GetInstance().timerChannel;
+        Beacon beacon = Beacon.GetInstance();
+        timerChannel = beacon.timerChannel;
+        playerScoreChannel = beacon.playerScoreChannel;
+
         timerChannel.TimeEnd += HandleLevelEnd;
+        playerScoreChannel.ScoreUpdate += CheckIfEnoughPoints;
+
+        requiredPoints = levelRequirements.requiredPoints;
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void CheckIfEnoughPoints(int points)
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        if (points >= requiredPoints[currentSceneName])
+        {
+            canTransition = true;
+            Time.timeScale = 0;
+        }
     }
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)

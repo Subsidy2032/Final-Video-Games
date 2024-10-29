@@ -23,6 +23,7 @@ public class BallMovement : MonoBehaviour
         rb.AddForce(separationForce, ForceMode2D.Impulse);
     }
 
+    /*
     void FixedUpdate()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
@@ -32,6 +33,5 @@ public class BallMovement : MonoBehaviour
             Vector2 nudge = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
             rb.velocity += nudge;
         }
-    }
+    }*/
 }
-

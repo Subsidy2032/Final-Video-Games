@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetState: {fileID: 3725157532830166768}
+  levelRequirements: {fileID: 11400000, guid: 9405d4d692a7bf847bac58fb293f77f0, type: 2}
 --- !u!1 &6631816190589134023
 GameObject:
   m_ObjectHideFlags: 0
