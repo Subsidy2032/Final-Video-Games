@@ -9,6 +9,7 @@ public class NextScreenTransition : TransitionBase
 {
     bool canTransition = false;
     TimerChannel timerChannel;
+    BallChannel ballChannel;
     PlayerScoreChannel playerScoreChannel;
     [SerializeField] private LevelRequirementsSO levelRequirements;
     private Dictionary<string, int> requiredPoints;
@@ -17,9 +18,11 @@ public class NextScreenTransition : TransitionBase
     {
         Beacon beacon = Beacon.GetInstance();
         timerChannel = beacon.timerChannel;
+        ballChannel = beacon.ballChannel;
         playerScoreChannel = beacon.playerScoreChannel;
 
         timerChannel.TimeEnd += HandleLevelEnd;
+        ballChannel.NoMoreBalls += HandleLevelEnd;
         playerScoreChannel.ScoreUpdate += CheckIfEnoughPoints;
 
         requiredPoints = levelRequirements.requiredPoints;
@@ -46,6 +49,12 @@ public class NextScreenTransition : TransitionBase
     {
         canTransition = true;
     }
+
+    private void HandleLevelEnd()
+    {
+        canTransition = true;
+    }
+
 
     public override bool ShouldTransition()
     {

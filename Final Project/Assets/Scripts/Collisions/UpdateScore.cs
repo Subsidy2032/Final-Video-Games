@@ -13,9 +13,10 @@ public class UpdateScore : MonoBehaviour
 
     void Start()
     {
-        playerScoreChannel = Beacon.GetInstance().playerScoreChannel;
+        Beacon beacon = Beacon.GetInstance();
+        playerScoreChannel = beacon.playerScoreChannel;
 
-        ballHoleCollisionChannel = Beacon.GetInstance().ballHoleCollisionChannel;
+        ballHoleCollisionChannel = beacon.ballHoleCollisionChannel;
         ballHoleCollisionChannel.CollisionDetected += AddToScore;
     }
 
