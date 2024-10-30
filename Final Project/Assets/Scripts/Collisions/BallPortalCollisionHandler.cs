@@ -14,12 +14,11 @@ public class BallPortalCollisionHandler : MonoBehaviour
     {
         Collider2D thisCollider = GetComponent<Collider2D>();
 
-        // Getting the sprite rendered of the block 
         SpriteRenderer blockSpriteRenderer = GetComponent<SpriteRenderer>();
 
         if (thisCollider != null && thisCollider.isTrigger) 
         {
-            if (collision.CompareTag("Ball") && collision.isTrigger)
+            if (collision.CompareTag(ObjectTagsEnum.Ball.ToString()) && collision.isTrigger && IsOutOfBounds(collision.gameObject, gameObject.tag))
             {
                 ballHoleCollisionChannel.InvokeCollisionDetected(collision.gameObject, gameObject.tag, ColorToString(blockSpriteRenderer.color));
             }
@@ -27,6 +26,29 @@ public class BallPortalCollisionHandler : MonoBehaviour
         
     }
 
+    public bool IsOutOfBounds(GameObject ball, string tag)
+    {
+        GameObject block = GameObject.FindWithTag(tag);
+        float ballXPosition = ball.transform.position.x;
+        float ballYPosition = ball.transform.position.y;
+
+        float blockXPosition = block.transform.position.x;
+        float blockYPosition = block.transform.position.y;
+
+        if (tag == ObjectTagsEnum.LeftWall.ToString() && ballXPosition < blockXPosition)
+            return true;
+
+        if (tag == ObjectTagsEnum.RightWall.ToString() && ballXPosition > blockXPosition)
+            return true;
+
+        if (tag == ObjectTagsEnum.Ground.ToString() && ballYPosition < blockYPosition)
+            return true;
+
+        if (tag == ObjectTagsEnum.Ceiling.ToString() && ballYPosition > blockYPosition)
+            return true;
+
+        return false;
+    }
 
     private string ColorToString(Color color)
     {
