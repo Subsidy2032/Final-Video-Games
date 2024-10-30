@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3166859776664806554}
   - component: {fileID: -1068868015963863964}
   - component: {fileID: 4637708725962030465}
+  - component: {fileID: 7247231959977420080}
   m_Layer: 0
   m_Name: WallTile
   m_TagString: leftWall
@@ -141,5 +142,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ffd4ac9d0be925408d6fbc4fc8e205e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7247231959977420080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098070773545640723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e641cd457f0ba9e48835e62cbb18c988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
