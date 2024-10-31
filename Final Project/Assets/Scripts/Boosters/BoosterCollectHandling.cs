@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BoosterCollectHandling : MonoBehaviour
 {
-    [SerializeField] private float boostDuration = 5f; // Duration of the boost effect in seconds
-    [SerializeField] private float jumpMultiplier = 2f; // Multiplier for the jump amount
+    [SerializeField] private float boostDuration = 5f;
+    [SerializeField] private float jumpMultiplier = 2f;
 
-    private float originalJumpAmount; // To store the original jump amount
+    private float originalJumpAmount;
 
     private void Start()
     {

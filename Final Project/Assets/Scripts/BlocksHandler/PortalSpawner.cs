@@ -9,7 +9,7 @@ public class PortalSpawner : MonoBehaviour
     [SerializeField] float maxSpawnTime = 8f;
     [SerializeField] float probabilityForGreenPortal = 0.7f;
 
-    // Blocks to get the position of all blocks that shouldn't be spawned
+    // Blocks to get the position of all blocks that shouldn't be spawned (corners)
     [SerializeField] GameObject rightCeilingBlock;
     [SerializeField] GameObject upperRightWallBlock;
 
@@ -21,21 +21,16 @@ public class PortalSpawner : MonoBehaviour
         StartCoroutine(WaitAndStartSpawning());
     }
 
-    // Added Quarantine to wait for the blocks to generate
     private IEnumerator WaitAndStartSpawning()
     {
-        // Wait for a few seconds (you can adjust the time as needed)
         yield return new WaitForSeconds(2f);
 
-        // Getting the needed blocks
         GetRightCieilingBlock();
         GetUpperRightWallBlock();
 
-        // Start spawning holes
         StartCoroutine(SpawnHolesRoutine());
     }
 
-    // Added function to get "rightCielingBlock"
     void GetRightCieilingBlock()
     {
         GameObject[] ceilingBlocks = GameObject.FindGameObjectsWithTag(ObjectTagsEnum.Ceiling.ToString());
@@ -51,7 +46,6 @@ public class PortalSpawner : MonoBehaviour
         }
     }
 
-    // Added function to get "UpperRightWallBlock"
     void GetUpperRightWallBlock()
     {
         GameObject[] rightWallBlocks = GameObject.FindGameObjectsWithTag(ObjectTagsEnum.RightWall.ToString());
@@ -82,7 +76,6 @@ public class PortalSpawner : MonoBehaviour
 
     private void SpawnHole()
     {
-        // Changed from arrays to lists for easier manipulation
         List<GameObject> rightWalls = new List<GameObject>(GameObject.FindGameObjectsWithTag(ObjectTagsEnum.RightWall.ToString()));
         List<GameObject> leftWalls = new List<GameObject>(GameObject.FindGameObjectsWithTag(ObjectTagsEnum.LeftWall.ToString()));
         List<GameObject> ceiling = new List<GameObject>(GameObject.FindGameObjectsWithTag(ObjectTagsEnum.Ceiling.ToString()));
@@ -90,7 +83,6 @@ public class PortalSpawner : MonoBehaviour
         float highestPositionWalls = upperRightWallBlock.transform.position.y;
         float highestPositionCieling = rightCeilingBlock.transform.position.x;
 
-        // Finding walls that should be removed from the lists
         for (int i = rightWalls.Count - 1; i >= 0; i--)
         {
             float rightWallPosition = rightWalls[i].transform.position.y;
