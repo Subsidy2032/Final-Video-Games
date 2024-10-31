@@ -1449,8 +1449,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 1915000036}
+  resumeButton: {fileID: 0}
   restartButton: {fileID: 80517672}
-  returnButton: {fileID: 1573956965}
   menuButton: {fileID: 854323109}
   startGameSceneName: Level1
   menuSceneName: StartScreen
@@ -1640,6 +1640,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7a8ba7383db234ea7f1d93e8a8a6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boostDuration: 5
+  jumpMultiplier: 2
 --- !u!1 &684278705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1806,7 +1808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd37d46fdfd72c40a9e5a426b33e668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runningTime: 15
+  runningTime: 111
   timeText: {fileID: 337989694}
 --- !u!4 &786084339
 Transform:
@@ -2389,6 +2391,7 @@ MonoBehaviour:
   pointA: {fileID: 27964682}
   pointB: {fileID: 972555248}
   spawnInterval: 15
+  boosterLifetime: 5
 --- !u!4 &1308534449
 Transform:
   m_ObjectHideFlags: 0
