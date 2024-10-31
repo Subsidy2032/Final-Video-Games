@@ -25,9 +25,27 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         direction = new Vector2(horizontalInput, 0);
 
+        if (horizontalInput != 0)
+        {
+            animator.SetBool("IsWalking", true);
+            if (horizontalInput > 0)
+            {
+                transform.localScale = new Vector3(0.5f, 0.45f, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(-0.5f, 0.45f, 1);
+            }
+        }
+        else
+        {
+            animator.SetBool("IsWalking", false);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             Jump();
+            animator.SetBool("IsJumping", true);
         }
     }
 
@@ -38,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        JumpAnimation();
         rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
         isGrounded = false;
     }
@@ -48,11 +65,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.contacts[0].normal.y > 0.5f)
         {
             isGrounded = true;
-        }
-
-        if (collision.gameObject.CompareTag(ObjectTagsEnum.Ball.ToString()))
-        {
-            Jump();
+            animator.SetBool("IsJumping", false);
         }
     }
 
@@ -62,15 +75,5 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
-    }
-
-    private void JumpAnimation()
-    {
-        animator.SetBool("IsJumping", true);
-    }
-
-    private void WalkAnimation()
-    {
-
     }
 }

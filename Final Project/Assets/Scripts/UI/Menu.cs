@@ -1,16 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
     [SerializeField] GameObject menuPanel;
+    [SerializeField] Button resumeButton;
     [SerializeField] Button restartButton;
-    [SerializeField] Button returnButton;
     [SerializeField] Button menuButton;
     SceneManagerWrapper sceneManager;
 
