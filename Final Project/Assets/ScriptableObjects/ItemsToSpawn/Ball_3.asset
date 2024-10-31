@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Ball_3
   m_EditorClassIdentifier: 
   ballSprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  addPoints: 3
-  removePoints: -2
+  addPoints: 1
+  deductPoints: -10

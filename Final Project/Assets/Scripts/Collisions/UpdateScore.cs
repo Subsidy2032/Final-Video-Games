@@ -29,7 +29,7 @@ public class UpdateScore : MonoBehaviour
 
         if (color == "red")
         {
-            score += sO_Ball.removePoints;
+            score += sO_Ball.deductPoints;
         }
 
         playerScoreChannel.ScoreUpdated(score);

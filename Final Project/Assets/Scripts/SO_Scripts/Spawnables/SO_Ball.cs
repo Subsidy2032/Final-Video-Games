@@ -5,5 +5,5 @@ public class SO_Ball : ScriptableObject
 {
     [SerializeField] public Sprite ballSprite;
     [SerializeField] public int addPoints;
-    [SerializeField] public int removePoints;
+    [SerializeField] public int deductPoints;
 }
