@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,7 +20,9 @@ public class NextScreenTransition : TransitionBase
 
         timerChannel.TimeEnd += HandleLevelEnd;
         ballChannel.NoMoreBalls += HandleLevelEnd;
+        ballChannel.NotEnoughPossiblePoints += HandleLevelEnd;
         playerScoreChannel.ScoreUpdate += CheckIfEnoughPoints;
+
 
         requiredPoints = levelRequirements.requiredPoints;
         SceneManager.sceneLoaded += OnSceneLoaded;

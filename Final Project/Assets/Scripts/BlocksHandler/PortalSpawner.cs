@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class PortalSpawner : MonoBehaviour
 {
-    [SerializeField] float holeDuration = 5f;
+    [SerializeField] float portalDuration = 5f;
     [SerializeField] float minSpawnTime = 3f;
     [SerializeField] float maxSpawnTime = 8f;
     [SerializeField] float probabilityForGreenPortal = 0.7f;
 
-    // Blocks to get the position of all blocks that shouldn't be spawned (corners)
     [SerializeField] GameObject rightCeilingBlock;
     [SerializeField] GameObject upperRightWallBlock;
 
@@ -68,7 +67,7 @@ public class PortalSpawner : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(minSpawnTime, maxSpawnTime));
 
             SpawnHole();
-            yield return new WaitForSeconds(holeDuration);
+            yield return new WaitForSeconds(portalDuration);
 
             CloseHole();
         }

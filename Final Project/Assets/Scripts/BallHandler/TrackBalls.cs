@@ -1,24 +1,29 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.VersionControl.Asset;
+using UnityEngine.SceneManagement;
 
 public class TrackBalls : MonoBehaviour
 {
     [SerializeField] private GameObject ballsParent;
-    private List<GameObject> balls = new();
+    [SerializeField] private PlayerScoreChannel pScoreChannel;
+    [SerializeField] private LevelRequirementsSO lvlReq;
 
+    private List<GameObject> balls = new();
     private BallHoleCollisionChannel ballHoleCollisionChannel;
     private BallChannel ballChannel;
+    
+    int points = 0;
+    
 
-    void Start()
+void Start()
     {
         Beacon beacon = Beacon.GetInstance();
+
         ballHoleCollisionChannel = beacon.ballHoleCollisionChannel;
         ballHoleCollisionChannel.CollisionDetected += RemoveBallFromList;
-
         ballChannel = beacon.ballChannel;
+        pScoreChannel = beacon.playerScoreChannel;
+        pScoreChannel.ScoreUpdate += UpdatePoints;
 
         foreach (var ball in ballsParent.GetComponentsInChildren<Transform>())
         {
@@ -29,11 +34,15 @@ public class TrackBalls : MonoBehaviour
         }
     }
 
+    private void UpdatePoints(int points)
+    {
+        this.points = points;
+    }
     private void RemoveBallFromList(GameObject ball, string tag, string color)
     {
         balls.Remove(ball);
 
-        if(balls.Count == 0)
+        if (balls.Count == 0)
         {
             ballChannel.NoMoreBallsLeft();
         }
@@ -41,6 +50,12 @@ public class TrackBalls : MonoBehaviour
 
     void Update()
     {
-        
+        int reqPoints = lvlReq.requiredPoints[SceneManager.GetActiveScene().name];
+        int maxPointsToGet = balls.Count * (balls[0].GetComponent<BallScript>().sO_Ball.addPoints);
+
+        if (maxPointsToGet + points < reqPoints)
+        {
+            ballChannel.NotEnoughPossiblePoints();
+        }
     }
 }

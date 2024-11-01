@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BallScript : MonoBehaviour
@@ -13,5 +11,8 @@ public class BallScript : MonoBehaviour
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = sO_Ball.ballSprite;
         }
+
+        Transform transform = GetComponent<Transform>();
+        transform.localScale = new Vector3(0.2f, 0.2f, 1f);
     }
 }
