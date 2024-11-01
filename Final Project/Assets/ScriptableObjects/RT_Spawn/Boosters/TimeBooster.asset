@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920df699b0c7a9d4ca2ef10edd246ddd, type: 3}
   m_Name: TimeBooster
   m_EditorClassIdentifier: 
-  boosterSprite: {fileID: 0}
+  boosterSprite: {fileID: 21300000, guid: e4c45f40b68e6c04397df91a10bb7748, type: 3}
   boostType: Time

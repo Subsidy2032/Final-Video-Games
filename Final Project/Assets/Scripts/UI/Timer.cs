@@ -6,10 +6,15 @@ public class Timer : MonoBehaviour
     [SerializeField] float runningTime;
     [SerializeField] TextMeshProUGUI timeText;
     TimerChannel timerChannel;
+    AddTimeChannel addTimeChannel;
 
     private void Start()
     {
-        timerChannel = Beacon.GetInstance().timerChannel;
+        Beacon beacon = Beacon.GetInstance();
+        timerChannel = beacon.timerChannel;
+        addTimeChannel = beacon.addTimeChannel;
+
+        addTimeChannel.AddTime += IncTime;
     }
 
     void Update()
@@ -27,8 +32,8 @@ public class Timer : MonoBehaviour
         }
     }
 
-    public void IncTime()
+    public void IncTime(int seconds)
     {
-        runningTime += 5;
+        runningTime += seconds;
     }
 }

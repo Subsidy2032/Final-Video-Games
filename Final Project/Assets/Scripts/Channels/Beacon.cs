@@ -8,6 +8,7 @@ public class Beacon : MonoBehaviour
     [SerializeField] public TimerChannel timerChannel;
     [SerializeField] public PlayerScoreChannel playerScoreChannel;
     [SerializeField] public BallChannel ballChannel;
+    [SerializeField] public AddTimeChannel addTimeChannel;
 
     void Awake()
     {

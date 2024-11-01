@@ -6,23 +6,34 @@ public class BoosterCollectHandling : MonoBehaviour
 {
     [SerializeField] private float boostDuration = 5f;
     [SerializeField] private float jumpMultiplier = 2f;
-
     private float originalJumpAmount;
+
+    [SerializeField] private int secondsToAdd = 3;
+
+    private AddTimeChannel addTimeChannel;
 
     private void Start()
     {
         PlayerMovement playerMovement = GetComponent<PlayerMovement>();
         originalJumpAmount = playerMovement.jumpAmount;
+
+        addTimeChannel = Beacon.GetInstance().addTimeChannel;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(ObjectTagsEnum.Booster.ToString()))
+        Booster booster = collision.GetComponent<Booster>();
+        if (booster != null && booster.sO_Booster.boostType != null && booster.sO_Booster.boostType == "Jump")
         {
             PlayerMovement playerMovement = GetComponent<PlayerMovement>();
             playerMovement.jumpAmount *= jumpMultiplier;
             Destroy(collision.gameObject);
             StartCoroutine(ResetJumpAmountAfterDelay(playerMovement));
+        }
+
+        else if(booster != null && booster.sO_Booster.boostType != null && booster.sO_Booster.boostType == "Time")
+        {
+            addTimeChannel.BoosterCollected(secondsToAdd);
         }
     }
 

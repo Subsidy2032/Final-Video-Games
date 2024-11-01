@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoosterScript : MonoBehaviour
+public class Booster : MonoBehaviour
 {
     [SerializeField] public SO_Booster sO_Booster;
 

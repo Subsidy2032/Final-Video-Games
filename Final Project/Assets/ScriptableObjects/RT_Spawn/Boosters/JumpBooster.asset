@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: JumpBooster
   m_EditorClassIdentifier: 
   boosterSprite: {fileID: 7482667652216324306, guid: 3c164bd30dcc95e4c8009bcd4ae06da9, type: 3}
-  boostType: Life
+  boostType: Jump
