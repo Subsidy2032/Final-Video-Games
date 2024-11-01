@@ -11,6 +11,7 @@ public class BoosterCollectHandling : MonoBehaviour
     [SerializeField] private int secondsToAdd = 3;
 
     private AddTimeChannel addTimeChannel;
+    private bool hasCollectedBooster = false;
 
     private void Start()
     {
@@ -22,18 +23,28 @@ public class BoosterCollectHandling : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Booster booster = collision.GetComponent<Booster>();
-        if (booster != null && booster.sO_Booster.boostType != null && booster.sO_Booster.boostType == "Jump")
-        {
-            PlayerMovement playerMovement = GetComponent<PlayerMovement>();
-            playerMovement.jumpAmount *= jumpMultiplier;
-            Destroy(collision.gameObject);
-            StartCoroutine(ResetJumpAmountAfterDelay(playerMovement));
-        }
+        if (hasCollectedBooster)
+            return;
 
-        else if(booster != null && booster.sO_Booster.boostType != null && booster.sO_Booster.boostType == "Time")
+        Booster booster = collision.GetComponent<Booster>();
+
+        if (booster != null && booster.sO_Booster.boostType != null)
         {
-            addTimeChannel.BoosterCollected(secondsToAdd);
+            if (booster.sO_Booster.boostType == "Jump")
+            {
+                PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+                playerMovement.jumpAmount *= jumpMultiplier;
+                Destroy(collision.gameObject);
+                StartCoroutine(ResetJumpAmountAfterDelay(playerMovement));
+            }
+
+            else if (booster.sO_Booster.boostType == "Time")
+            {
+                addTimeChannel.BoosterCollected(secondsToAdd);
+                Destroy(collision.gameObject);
+                hasCollectedBooster = true;
+                StartCoroutine(ResetBool());
+            }
         }
     }
 
@@ -41,5 +52,11 @@ public class BoosterCollectHandling : MonoBehaviour
     {
         yield return new WaitForSeconds(boostDuration);
         playerMovement.jumpAmount = originalJumpAmount;
+    }
+
+    private IEnumerator ResetBool()
+    {
+        yield return new WaitForSeconds(1f);
+        hasCollectedBooster = false;
     }
 }

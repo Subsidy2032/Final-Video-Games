@@ -6,7 +6,7 @@ public class LevelRequirementsSO : ScriptableObject
 {
     public Dictionary<string, int> requiredPoints = new Dictionary<string, int>
     {
-        { SceneNamesEnum.Level1.ToString(), 0 },
+        { SceneNamesEnum.Level1.ToString(), 50 },
         { SceneNamesEnum.Level2.ToString(), 0 },
         { SceneNamesEnum.Level3.ToString(), 0 }
     };

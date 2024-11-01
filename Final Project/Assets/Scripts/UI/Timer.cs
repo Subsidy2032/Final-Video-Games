@@ -13,8 +13,7 @@ public class Timer : MonoBehaviour
         Beacon beacon = Beacon.GetInstance();
         timerChannel = beacon.timerChannel;
         addTimeChannel = beacon.addTimeChannel;
-
-        addTimeChannel.AddTime += IncTime;
+        addTimeChannel.AddTime += AddTime;
     }
 
     void Update()
@@ -32,8 +31,16 @@ public class Timer : MonoBehaviour
         }
     }
 
-    public void IncTime(int seconds)
+    public void AddTime(int seconds)
     {
         runningTime += seconds;
+    }
+
+    private void OnDestroy()
+    {
+        if (addTimeChannel != null)
+        {
+            addTimeChannel.AddTime -= AddTime;
+        }
     }
 }

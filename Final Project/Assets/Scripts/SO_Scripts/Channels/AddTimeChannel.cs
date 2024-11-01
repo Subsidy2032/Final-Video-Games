@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Timer Channel", menuName = "Channels/AddTime")]
+[CreateAssetMenu(fileName = "Add Time Channel", menuName = "Channels/AddTime")]
 public class AddTimeChannel : ScriptableObject
 {
     public Action<int> AddTime;

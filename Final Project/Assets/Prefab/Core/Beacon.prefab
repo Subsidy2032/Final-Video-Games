@@ -49,3 +49,4 @@ MonoBehaviour:
   timerChannel: {fileID: 11400000, guid: 9d05ef2875f56d24d810d5abdc3a50eb, type: 2}
   playerScoreChannel: {fileID: 11400000, guid: 8f9290a2a3abf854380f71b379a96a54, type: 2}
   ballChannel: {fileID: 11400000, guid: 0c4237877469f3848be8a80fbd9a6380, type: 2}
+  addTimeChannel: {fileID: 11400000, guid: 70c5a45b36530a14e9da5e41ebe2a37b, type: 2}
