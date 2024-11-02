@@ -5,16 +5,21 @@ using UnityEngine;
 public class BallChannel : ScriptableObject
 {
     public Action NoMoreBalls;
-    public Action NotEnoughPossiblePoints;
+    public Action NotEnoughPointsToWin;
+    public Action NotEnoughPointsToLose;
 
     public void NoMoreBallsLeft()
     {
         NoMoreBalls?.Invoke();
     }
 
-    public void NotEnoughPossiblePointsLeft()
+    public void NotEnoughPointsLeftToWin()
     {
-        NotEnoughPossiblePoints?.Invoke();
+        NotEnoughPointsToWin?.Invoke();
     }
 
+    public void NotEnoughPointsLeftToLose()
+    {
+        NotEnoughPointsToWin?.Invoke();
+    }
 }

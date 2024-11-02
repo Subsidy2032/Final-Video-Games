@@ -20,26 +20,12 @@ public class NextScreenTransition : TransitionBase
 
         timerChannel.TimeEnd += HandleLevelEnd;
         ballChannel.NoMoreBalls += HandleLevelEnd;
-        ballChannel.NotEnoughPossiblePoints += HandleLevelEnd;
-        //playerScoreChannel.ScoreUpdate += CheckIfEnoughPoints;
-
+        ballChannel.NotEnoughPointsToWin += HandleLevelEnd;
+        ballChannel.NotEnoughPointsToLose += HandleLevelEnd;
 
         requiredPoints = levelRequirements.requiredPoints;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-
-    /*
-    private void CheckIfEnoughPoints(int points)
-    {
-        string currentSceneName = SceneManager.GetActiveScene().name;
-
-        if (points >= requiredPoints[currentSceneName])
-        {
-            canTransition = true;
-            Time.timeScale = 0;
-        }
-    }
-    */
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {

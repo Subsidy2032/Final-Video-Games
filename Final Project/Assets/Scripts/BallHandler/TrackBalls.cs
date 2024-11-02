@@ -54,10 +54,16 @@ void Start()
         {
             int reqPoints = lvlReq.requiredPoints[SceneManager.GetActiveScene().name];
             int maxPointsToGet = balls.Count * (balls[0].GetComponent<BallScript>().sO_Ball.addPoints);
+            int maxPointsToLose = balls.Count * (balls[0].GetComponent<BallScript>().sO_Ball.deductPoints);
 
             if (maxPointsToGet + points < reqPoints)
             {
-                ballChannel.NotEnoughPossiblePoints();
+                ballChannel.NotEnoughPointsToWin();
+            }
+
+            if (maxPointsToLose + points > reqPoints)
+            {
+                ballChannel.NotEnoughPointsToLose();
             }
         }
     }
