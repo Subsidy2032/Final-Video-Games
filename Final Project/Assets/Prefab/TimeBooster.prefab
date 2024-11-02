@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4977550846416724914}
   - component: {fileID: -2200477367948838722}
   - component: {fileID: 825709119650163108}
-  - component: {fileID: -6301649050549502114}
-  - component: {fileID: 3485151918103423273}
   - component: {fileID: 5834538160555068829}
+  - component: {fileID: 3343220018660404556}
+  - component: {fileID: 9182884442633303391}
   m_Layer: 8
   m_Name: TimeBooster
   m_TagString: Booster
@@ -115,8 +115,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
---- !u!61 &-6301649050549502114
-BoxCollider2D:
+--- !u!114 &5834538160555068829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4554559098733806147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3530eae4ff846d34d824cc20cab32f04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sO_Booster: {fileID: 11400000, guid: 6c331eb60d497b449b931a3a126bfce8, type: 2}
+--- !u!58 &3343220018660404556
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -148,20 +161,10 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!61 &3485151918103423273
-BoxCollider2D:
+  m_Radius: 2.5599997
+--- !u!58 &9182884442633303391
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -193,28 +196,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &5834538160555068829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4554559098733806147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3530eae4ff846d34d824cc20cab32f04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sO_Booster: {fileID: 11400000, guid: 6c331eb60d497b449b931a3a126bfce8, type: 2}
+  m_Radius: 2.5599997

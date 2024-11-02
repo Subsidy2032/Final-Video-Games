@@ -22,7 +22,6 @@ public class Menu : MonoBehaviour
         sceneManager = SceneManagerWrapper.GetInstance();
         gameStateChannel.StateEnter += OnStateEnter;
 
-
         restartButton.onClick.AddListener(() =>
         {
             sceneManager.LoadScene(startGameSceneName);
