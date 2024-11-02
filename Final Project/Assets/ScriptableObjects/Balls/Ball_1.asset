@@ -9,6 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03a4f1058a059e745882964d05bd9c0b, type: 3}
-  m_Name: Spike
+  m_Script: {fileID: 11500000, guid: d3af9c757e1c9eb4f97447d3c55c6f23, type: 3}
+  m_Name: Ball_1
   m_EditorClassIdentifier: 
+  ballSprite: {fileID: 21300000, guid: 519e049cda1c435499eebd1d97d741c2, type: 3}
+  addPoints: 50
+  deductPoints: -10

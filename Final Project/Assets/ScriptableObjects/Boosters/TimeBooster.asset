@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3af9c757e1c9eb4f97447d3c55c6f23, type: 3}
-  m_Name: Ball_3
+  m_Script: {fileID: 11500000, guid: 920df699b0c7a9d4ca2ef10edd246ddd, type: 3}
+  m_Name: TimeBooster
   m_EditorClassIdentifier: 
-  ballSprite: {fileID: 21300000, guid: d46693bb1ada6bd4abeee04b1366a336, type: 3}
-  addPoints: 50
-  deductPoints: -100
+  boosterSprite: {fileID: 21300000, guid: 75ccb1f56088ff64f8b251cd47f660b7, type: 3}
+  boostType: Time

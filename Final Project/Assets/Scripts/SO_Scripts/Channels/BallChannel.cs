@@ -20,6 +20,6 @@ public class BallChannel : ScriptableObject
 
     public void NotEnoughPointsLeftToLose()
     {
-        NotEnoughPointsToWin?.Invoke();
+        NotEnoughPointsToLose?.Invoke();
     }
 }

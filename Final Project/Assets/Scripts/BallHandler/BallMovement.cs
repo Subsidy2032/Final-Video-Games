@@ -87,20 +87,12 @@
 
 
 
-
-
-
-
-
-
-
-
-
 using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
-    public float bounceForce = 10f;
+    public float bounceForce = 10f; // Initial force applied to each ball
+    public float bounciness = 1f;   // Bounciness level, where 1 is fully elastic
 
     private Rigidbody2D rb;
 
@@ -108,19 +100,18 @@ public class BallMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        // Apply an initial random force to start the ball moving
+        // Apply an initial random force to each ball to start the movement
         Vector2 initialForce = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * bounceForce;
         rb.AddForce(initialForce, ForceMode2D.Impulse);
 
-        // Make the ball bouncy by adjusting physics material
+        // Set up bouncy physics material
         Collider2D collider = GetComponent<Collider2D>();
         if (collider != null)
         {
             PhysicsMaterial2D bounceMaterial = new PhysicsMaterial2D();
-            bounceMaterial.bounciness = 1f; // Set maximum bounciness
-            bounceMaterial.friction = 0f; // Set no friction to keep speed consistent
+            bounceMaterial.bounciness = bounciness;
+            bounceMaterial.friction = 0f; // Ensures no friction, keeping speed consistent
             collider.sharedMaterial = bounceMaterial;
         }
     }
 }
-
