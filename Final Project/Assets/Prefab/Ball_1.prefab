@@ -114,10 +114,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -138,7 +138,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 4375438672118756535}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 1d955b2d08c2e279e8b54dc8fb904293, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -161,9 +161,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2399999, y: -0.14}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.648826
+  m_Radius: 1.28
 --- !u!114 &3291784798218543495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff55cb76681d0c459ad1b2b202306bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 10
 --- !u!58 &-104805244163187675
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -209,6 +208,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2399999, y: -0.14}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.648826
+  m_Radius: 1.28

@@ -2896,7 +2896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockSegmentPrefab: {fileID: 2098070773545640723, guid: 573ed82012e64f84d95b0c70c965cc17, type: 3}
-  blockThickness: 1
+  blockThickness: 0.3
   segmentsPerBlock: 4
 --- !u!4 &1309387009
 Transform:
