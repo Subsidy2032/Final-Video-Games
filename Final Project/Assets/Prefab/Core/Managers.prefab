@@ -451,7 +451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetState: {fileID: 6490632667991351701}
-  actionName: ReturnButton
+  actionName: ResumeBtn
 --- !u!114 &733880888405521727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetState: {fileID: 6490632667991351701}
-  actionName: RestartGameButton
+  actionName: RestartBtn
 --- !u!114 &3401192049575527233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetState: {fileID: 6490632667991351701}
-  actionName: BackToMenuButton
+  actionName: BackToMainBtn
 --- !u!1001 &2981414095569748060
 PrefabInstance:
   m_ObjectHideFlags: 0
