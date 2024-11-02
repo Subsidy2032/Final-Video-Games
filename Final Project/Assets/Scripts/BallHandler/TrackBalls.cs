@@ -48,14 +48,17 @@ void Start()
         }
     }
 
-    void Update()
+    private void Update()
     {
-        int reqPoints = lvlReq.requiredPoints[SceneManager.GetActiveScene().name];
-        int maxPointsToGet = balls.Count * (balls[0].GetComponent<BallScript>().sO_Ball.addPoints);
-
-        if (maxPointsToGet + points < reqPoints)
+        if (balls.Count != 0)
         {
-            ballChannel.NotEnoughPossiblePoints();
+            int reqPoints = lvlReq.requiredPoints[SceneManager.GetActiveScene().name];
+            int maxPointsToGet = balls.Count * (balls[0].GetComponent<BallScript>().sO_Ball.addPoints);
+
+            if (maxPointsToGet + points < reqPoints)
+            {
+                ballChannel.NotEnoughPossiblePoints();
+            }
         }
     }
 }
