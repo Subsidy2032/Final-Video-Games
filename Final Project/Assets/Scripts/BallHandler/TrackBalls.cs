@@ -64,6 +64,7 @@ void Start()
             if (maxPointsToLose + points > reqPoints)
             {
                 ballChannel.NotEnoughPointsToLose();
+                Time.timeScale = 0;
             }
         }
     }
