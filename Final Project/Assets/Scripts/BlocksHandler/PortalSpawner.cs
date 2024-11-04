@@ -62,15 +62,14 @@ public class PortalSpawner : MonoBehaviour
 
     private IEnumerator SpawnHolesRoutine()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(Random.Range(minSpawnTime, maxSpawnTime));
+        yield return new WaitForSeconds(Random.Range(minSpawnTime, maxSpawnTime));
 
-            SpawnHole();
-            yield return new WaitForSeconds(portalDuration);
+        SpawnHole();
+        yield return new WaitForSeconds(portalDuration);
 
-            CloseHole();
-        }
+        CloseHole();
+
+        StartCoroutine(SpawnHolesRoutine());
     }
 
     private void SpawnHole()

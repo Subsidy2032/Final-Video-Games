@@ -68,4 +68,10 @@ void Start()
             }
         }
     }
+
+    private void OnDestroy()
+    {
+        ballHoleCollisionChannel.CollisionDetected -= RemoveBallFromList;
+        pScoreChannel.ScoreUpdate -= UpdatePoints;
+    }
 }

@@ -18,4 +18,9 @@ public class DestroyBallOnCollision : MonoBehaviour
     {
         Destroy(ball);
     }
+
+    private void OnDestroy()
+    {
+        ballHoleCollisionChannel.CollisionDetected -= DestroyBall;
+    }
 }

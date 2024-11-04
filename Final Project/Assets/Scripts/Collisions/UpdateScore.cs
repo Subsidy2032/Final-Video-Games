@@ -36,4 +36,9 @@ public class UpdateScore : MonoBehaviour
 
         scoreText.text = "Your Score: " + score;
     }
+
+    private void OnDestroy()
+    {
+        ballHoleCollisionChannel.CollisionDetected -= AddToScore;
+    }
 }

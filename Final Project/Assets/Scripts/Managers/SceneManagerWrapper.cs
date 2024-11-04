@@ -42,11 +42,6 @@ public class SceneManagerWrapper : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void OnDestroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Time.timeScale = 1;
@@ -84,5 +79,10 @@ public class SceneManagerWrapper : MonoBehaviour
     public float GetElapsedTime()
     {
         return Time.time - sceneLoadTime;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
